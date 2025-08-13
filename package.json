@@ -1,0 +1,32 @@
+{
+	"name": "tbx.js",
+	"version": "1.0.0",
+	"description": "A JavaScript SDK for interacting with the Tebex API",
+	"type": "module",
+	"bugs": {
+		"url": "https://github.com/unitysync/tbx.js/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/unitysync/tbx.js.git"
+	},
+	"scripts": {
+		"build": "node scripts/build.js",
+		"format": "biome format --write .",
+		"lint": "biome lint .",
+		"typecheck": "tsc --noEmit"
+	},
+	"keywords": [
+		"tebex"
+	],
+	"author": "unitysync",
+	"license": "MIT",
+	"devDependencies": {
+		"@biomejs/biome": "^2.1.4",
+		"esbuild": "^0.25.9",
+		"typescript": "^5.9.2"
+	},
+	"engines": {
+		"node": ">=18"
+	}
+}
