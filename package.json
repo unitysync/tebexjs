@@ -1,6 +1,6 @@
 {
-	"name": "tbx.js",
-	"version": "1.0.0",
+	"name": "@unitysync/tebexjs",
+	"version": "0.1.0",
 	"description": "A JavaScript SDK for interacting with the Tebex API",
 	"type": "module",
 	"main": "./dist/cjs/index.js",
@@ -12,7 +12,10 @@
 			"require": "./dist/cjs/index.js"
 		}
 	},
-	
+	"files": [
+		"./dist/**/*.js",
+		"./dist/**/*.d.ts"
+	],
 	"bugs": {
 		"url": "https://github.com/unitysync/tbx.js/issues"
 	},
