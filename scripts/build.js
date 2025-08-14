@@ -1,7 +1,7 @@
-import { build } from 'esbuild';
+import { build } from 'esbuild'
 
 const buildAll = async () => {
-	console.log('Building tbx.js for ESM...');
+	console.log('Building tbx.js for ESM...')
 
 	await build({
 		entryPoints: ['./src/index.ts'],
@@ -10,9 +10,9 @@ const buildAll = async () => {
 		platform: 'neutral',
 		target: 'esnext',
 		format: 'esm',
-	});
+	})
 
-	console.log('Building tbx.js for CJS...');
+	console.log('Building tbx.js for CJS...')
 
 	await build({
 		entryPoints: ['./src/index.ts'],
@@ -21,7 +21,7 @@ const buildAll = async () => {
 		platform: 'neutral',
 		target: 'esnext',
 		format: 'cjs',
-	});
-};
+	})
+}
 
-buildAll().catch(console.error);
+buildAll().catch(console.error)

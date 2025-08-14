@@ -1,1 +1,1 @@
-export * from './headless';
+export * from './headless'

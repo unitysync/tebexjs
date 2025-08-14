@@ -1,4 +1,4 @@
-import type { AuthLink, BasketResponse, IBasket } from '@/types/headless';
+import type { AuthLink, BasketResponse, IBasket } from '@/types/headless'
 import { Headless } from '.'
 
 /**
@@ -25,11 +25,11 @@ class Basket extends Headless implements IBasket {
 
 		this.request<BasketResponse>('/accounts/{token}/baskets', 'POST')
 			.then((data) => {
-				this.ident = data.ident ?? '';
+				this.ident = data.ident ?? ''
 			})
 			.catch((err) => {
-				throw new Error(err);
-			});
+				throw new Error(err)
+			})
 	}
 
 	/**
@@ -40,12 +40,12 @@ class Basket extends Headless implements IBasket {
 	 * @throws {string} Rejects if `returnUrl` is not provided.
 	 */
 	public async getAuthLinks(returnUrl: string): Promise<AuthLink[]> {
-		if (!returnUrl) return Promise.reject('Return URL not provided');
+		if (!returnUrl) return Promise.reject('Return URL not provided')
 
 		return await this.request(
 			'/accounts/{token}/baskets/{basketIdent}/auth?returnUrl=' +
 				encodeURIComponent(returnUrl),
-		);
+		)
 	}
 
 	/**
@@ -57,7 +57,7 @@ class Basket extends Headless implements IBasket {
 		return await this.request(
 			'/accounts/{token}/baskets/{basketIdent}',
 			'GET',
-		);
+		)
 	}
 
 	/**
@@ -68,7 +68,7 @@ class Basket extends Headless implements IBasket {
 	 * @throws {string} Rejects if `code` is not provided.
 	 */
 	public async applyCreatorCode(code: string): Promise<void> {
-		if (!code) return Promise.reject('Creator code not provided');
+		if (!code) return Promise.reject('Creator code not provided')
 
 		return await this.request(
 			'/accounts/{token}/baskets/{basketIdent}/creator-codes',
@@ -76,7 +76,7 @@ class Basket extends Headless implements IBasket {
 			{
 				creator_code: code,
 			},
-		);
+		)
 	}
 
 	/**
@@ -88,7 +88,7 @@ class Basket extends Headless implements IBasket {
 		return await this.request(
 			'/accounts/{token}/baskets/{basketIdent}/creator-codes/remove',
 			'POST',
-		);
+		)
 	}
 
 	/**
@@ -99,7 +99,7 @@ class Basket extends Headless implements IBasket {
 	 * @throws {string} Rejects if `code` is not provided.
 	 */
 	public async applyGiftCard(code: string): Promise<void> {
-		if (!code) return Promise.reject('Gift card code not provided');
+		if (!code) return Promise.reject('Gift card code not provided')
 
 		return await this.request(
 			'/accounts/{token}/baskets/{basketIdent}/giftcards',
@@ -107,7 +107,7 @@ class Basket extends Headless implements IBasket {
 			{
 				card_number: code,
 			},
-		);
+		)
 	}
 
 	/**
@@ -118,7 +118,7 @@ class Basket extends Headless implements IBasket {
 	 * @throws {string} Rejects if `code` is not provided.
 	 */
 	public async removeGiftCard(code: string): Promise<void> {
-		if (!code) return Promise.reject('Gift card code not provided');
+		if (!code) return Promise.reject('Gift card code not provided')
 
 		return await this.request(
 			'/accounts/{token}/baskets/{basketIdent}/giftcards/remove',
@@ -126,7 +126,7 @@ class Basket extends Headless implements IBasket {
 			{
 				card_number: code,
 			},
-		);
+		)
 	}
 
 	/**
@@ -137,7 +137,7 @@ class Basket extends Headless implements IBasket {
 	 * @throws {string} Rejects if `code` is not provided.
 	 */
 	public async applyCoupon(code: string): Promise<void> {
-		if (!code) return Promise.reject('Coupon code not provided');
+		if (!code) return Promise.reject('Coupon code not provided')
 
 		return await this.request(
 			'/accounts/{token}/baskets/{basketIdent}/coupons',
@@ -145,7 +145,7 @@ class Basket extends Headless implements IBasket {
 			{
 				coupon_code: code,
 			},
-		);
+		)
 	}
 
 	/**
@@ -157,7 +157,7 @@ class Basket extends Headless implements IBasket {
 		return await this.request(
 			'/accounts/{token}/baskets/{basketIdent}/coupons/remove',
 			'POST',
-		);
+		)
 	}
 
 	/**
@@ -172,12 +172,12 @@ class Basket extends Headless implements IBasket {
 		packageId: string,
 		quantity: number = 1,
 	): Promise<void> {
-		if (!packageId) return Promise.reject('Package ID not provided');
+		if (!packageId) return Promise.reject('Package ID not provided')
 
 		return await this.request('/baskets/{basketIdent}/packages', 'POST', {
 			package_id: packageId,
 			quantity: quantity,
-		});
+		})
 	}
 
 	/**
@@ -188,7 +188,7 @@ class Basket extends Headless implements IBasket {
 	 * @throws {string} Rejects if `packageId` is not provided.
 	 */
 	public async removePackage(packageId: string): Promise<void> {
-		if (!packageId) return Promise.reject('Package ID not provided');
+		if (!packageId) return Promise.reject('Package ID not provided')
 
 		return await this.request(
 			'/baskets/{basketIdent}/packages/remove',
@@ -196,7 +196,7 @@ class Basket extends Headless implements IBasket {
 			{
 				package_id: packageId,
 			},
-		);
+		)
 	}
 
 	/**
@@ -211,8 +211,8 @@ class Basket extends Headless implements IBasket {
 		packageId: string,
 		quantity: number = 1,
 	): Promise<void> {
-		if (!packageId) return Promise.reject('Package ID not provided');
-		if (!quantity) return Promise.reject('Quantity not provided');
+		if (!packageId) return Promise.reject('Package ID not provided')
+		if (!quantity) return Promise.reject('Quantity not provided')
 
 		return await this.request(
 			'/baskets/{basketIdent}/packages/update',
@@ -221,8 +221,8 @@ class Basket extends Headless implements IBasket {
 				package_id: packageId,
 				quantity: quantity,
 			},
-		);
+		)
 	}
 }
 
-export { Basket };
+export { Basket }
