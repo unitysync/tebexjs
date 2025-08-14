@@ -1,5 +1,3 @@
-export * from './basket'
-export * from './store'
 
 abstract class Headless {
 	protected baseUrl!: string
@@ -45,3 +43,6 @@ abstract class Headless {
 }
 
 export { Headless }
+
+export * from './basket'
+export * from './store'
