@@ -1,50 +1,13 @@
 import type { AuthLink, BasketResponse, IBasket } from '@/types/headless';
+import { Headless } from '.'
 
 /**
  * A client for interacting with the Tebex Headless API, specifically for managing a shopping basket.
  * This class handles all API requests related to a basket, including adding/removing items and applying codes.
  */
-class Basket implements IBasket {
-	private readonly publicToken: string;
-	private readonly baseUrl = 'https://headless.tebex.io/api';
-	private ident: string = '';
-
-	/**
-	 * Internal asynchronous method to handle Basket API requests.
-	 * It handles URL path replacement, sets headers, and performs the fetch request.
-	 * @private
-	 * @async
-	 * @param {string} path - The API endpoint path with placeholders (e.g., '/accounts/{token}/baskets/{basketIdent}').
-	 * @param {string} [method='GET'] - The HTTP method to use for the request.
-	 * @param {Record<string, any>} [body] - The request body data, if any.
-	 * @returns {Promise<any>} A promise that resolves with the parsed JSON response.
-	 * @throws {string} Throws an error message if the network request fails or the response status is not OK.
-	 */
-	private async request<T = unknown>(
-		path: string,
-		method: string = 'GET',
-		body?: Record<string, unknown>,
-	): Promise<T> {
-		const route = path
-			.replace(/{token}/g, this.publicToken || '')
-			.replace(/{basketIdent}/g, this.ident || '');
-
-		const response = await fetch(this.baseUrl + route, {
-			method: method,
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(body),
-		});
-
-		if (!response.ok) {
-			return Promise.reject(
-				`Request failed with status ${response.status}: ${response.statusText}`,
-			);
-		}
-
-		return await response.json();
-	}
+class Basket extends Headless implements IBasket {
+	protected readonly publicToken: string
+	public ident: string = ''
 
 	/**
 	 * Creates a new instance of the Basket client and immediately creates a new basket
@@ -52,7 +15,9 @@ class Basket implements IBasket {
 	 * @param {string} publicToken - The Tebex public token for the store.
 	 */
 	constructor(publicToken: string) {
-		this.publicToken = publicToken;
+		super()
+		this.publicToken = publicToken
+		this.baseUrl = 'https://headless.tebex.io/api'
 
 		this.request<BasketResponse>('/accounts/{token}/baskets', 'POST')
 			.then((data) => {
