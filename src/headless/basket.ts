@@ -15,6 +15,10 @@ class Basket extends Headless implements IBasket {
 	 * @param {string} publicToken - The Tebex public token for the store.
 	 */
 	constructor(publicToken: string) {
+		if (!publicToken || typeof publicToken !== 'string') {
+			throw new Error('Invalid Token')
+		}
+
 		super()
 		this.publicToken = publicToken
 		this.baseUrl = 'https://headless.tebex.io/api'
