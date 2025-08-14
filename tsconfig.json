@@ -7,7 +7,7 @@
 		"paths": {
 			"@/*": ["./src/*"]
 		},
-		"outDir": "./dist",
+		"outDir": "./dist/dts",
 		"rootDir": "./src",
 		"declaration": true,
 		"emitDeclarationOnly": true,
