@@ -1,5 +1,5 @@
 import type { IStore, StoreResponse, Page } from '@/types/headless/store'
-import { Headless } from '.'
+import { Headless } from './base'
 
 class Store extends Headless implements IStore {
 	constructor(protected publicToken: string) {

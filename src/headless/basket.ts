@@ -1,5 +1,5 @@
 import type { AuthLink, BasketResponse, IBasket } from '@/types/headless'
-import { Headless } from '.'
+import { Headless } from './base'
 
 /**
  * A client for interacting with the Tebex Headless API, specifically for managing a shopping basket.
