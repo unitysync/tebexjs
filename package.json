@@ -1,20 +1,26 @@
 {
 	"name": "@unitysync/tebexjs",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "A JavaScript SDK for interacting with the Tebex API",
 	"type": "module",
-	"main": "./dist/cjs/index.js",
-	"module": "./dist/esm/index.js",
-	"types": "./dist/dts/index.d.ts",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
 	"exports": {
 		".": {
-			"import": "./dist/esm/index.js",
-			"require": "./dist/cjs/index.js"
+			"import": {
+				"types": "./dist/index.d.ts",
+				"default": "./dist/index.js"
+			},
+			"require": {
+				"types": "./dist/index.d.cts",
+				"default": "./dist/index.cjs"
+			}
 		}
 	},
+	"sideEffects": false,
 	"files": [
-		"./dist/**/*.js",
-		"./dist/**/*.d.ts"
+		"dist",
+		"package.json"
 	],
 	"bugs": {
 		"url": "https://github.com/unitysync/tbx.js/issues"
@@ -24,12 +30,13 @@
 		"url": "git+https://github.com/unitysync/tbx.js.git"
 	},
 	"scripts": {
+		"lint": "biome lint --write .",
 		"format": "biome format --write .",
-		"lint": "biome lint .",
-		"clean": "rimraf dist",
-		"build:types": "tsc && tsc-alias",
-		"build": "pnpm clean && tsx ./scripts/build.ts && pnpm build:types",
-		"prepare": "pnpm build"
+		"check": "biome check --write .",
+		"clean": "pnpm rimraf dist",
+		"typecheck": "tsc --noEmit",
+		"build": "pnpm clean && tsup",
+		"prepare": "husky"
 	},
 	"keywords": [
 		"tebex"
@@ -38,13 +45,10 @@
 	"license": "MIT",
 	"devDependencies": {
 		"@biomejs/biome": "^2.1.4",
-		"esbuild": "^0.25.9",
+		"husky": "^9.1.7",
 		"rimraf": "^6.0.1",
 		"tsc-alias": "^1.8.16",
-		"tsx": "^4.20.4",
+		"tsup": "^8.5.0",
 		"typescript": "^5.9.2"
-	},
-	"engines": {
-		"node": ">=18"
 	}
 }
